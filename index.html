@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Altın Bozdurma Hesabı</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Altın">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F1F2EE">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
+<style>
+/* Düzen: bilgisayarda tek tablo (satır = altın, sütun = Harem + kuyumcular); telefonda her altın bir kart, altında Harem ve kuyumcular alt alta. */
+:root{
+  --bg:#F1F2EE; --surface:#FFFFFF; --sunk:#E7E9E3; --fg:#1B201D; --muted:#5D6560; --line:#D5D8D1;
+  --gold:#8A6212; --gold-soft:#F2E7CB; --good:#1F6B45; --good-soft:#DAEEE1; --bad:#A33434; --bad-soft:#F6DFDC;
+  --display:"Literata", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, "Courier New", monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111412; --surface:#191D1A; --sunk:#222724; --fg:#E6E9E4; --muted:#99A29C; --line:#2D332F;
+    --gold:#D8B35C; --gold-soft:#372E1C; --good:#6CC894; --good-soft:#1B3126; --bad:#EC8980; --bad-soft:#38211F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111412; --surface:#191D1A; --sunk:#222724; --fg:#E6E9E4; --muted:#99A29C; --line:#2D332F;
+  --gold:#D8B35C; --gold-soft:#372E1C; --good:#6CC894; --good-soft:#1B3126; --bad:#EC8980; --bad-soft:#38211F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.45 var(--body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 48px}
+.wrap{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(24px,4vw,32px)}
+h2{font-size:20px}
+h3{font-size:17px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+.label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tip{font-size:13px;color:var(--muted);margin:0}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+.empty{color:var(--muted);font-size:14px}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.status-box{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:0}
+.status-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+#statusSub{text-align:right;max-width:440px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.status[data-s="live"] .dot{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+.status[data-s="wait"] .dot{background:var(--gold)}
+.status[data-s="off"] .dot,.status[data-s="stale"] .dot{background:var(--bad)}
+.warn{font-size:13px;background:var(--bad-soft);color:var(--bad);border-radius:6px;padding:7px 10px}
+
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.summary > div{background:var(--surface);padding:14px 18px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.big{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(21px,3vw,27px);font-weight:500;line-height:1.2}
+.summary .gold .big{color:var(--gold)}
+
+section.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+
+button{font:inherit;font-size:13.5px;cursor:pointer;border-radius:6px;padding:7px 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+button:hover{border-color:var(--muted)}
+button.primary{background:var(--gold);border-color:var(--gold);color:var(--surface);font-weight:600}
+button.link{border:0;background:none;padding:2px 4px;color:var(--muted);text-decoration:underline;font-size:12.5px}
+input{font:inherit;color:var(--fg)}
+input.n{width:100%;font-family:var(--mono);font-variant-numeric:tabular-nums;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:5px 8px;text-align:right;height:30px}
+input.n.has{background:var(--gold-soft);border-color:var(--gold)}
+input.n:disabled{opacity:.45}
+input.nm{width:100%;font-weight:600;background:transparent;border:1px solid transparent;border-radius:6px;padding:4px 6px}
+input.nm:hover{border-color:var(--line)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;border-radius:0;padding:3px 9px;font-size:12px;background:var(--surface)}
+.seg button[aria-pressed="true"]{background:var(--gold);color:var(--surface);font-weight:600}
+.th-sub{display:block;font-size:11.5px;color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none}
+.th-title{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--good-soft);color:var(--good)}
+.confirm{display:flex;gap:6px;align-items:center;font-size:12.5px}
+.oh-row{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;color:var(--muted);flex:none}
+.tag.e{color:var(--gold)}
+.u{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13.5px}
+.x{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}
+.d{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12px}
+
+/* Toplam hücreleri (tablo altı ve telefon kartları) */
+.fcell .tot{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;font-size:17px;text-align:right}
+.fcell .d{text-align:right;font-size:12.5px}
+.fcell.best .tot{color:var(--good)}
+.fcell .kf{display:block;text-align:right;font-size:12.5px;margin-top:4px;padding-top:4px;border-top:1px dashed var(--line)}
+.fcell .kf:empty{display:none}
+.fcell .kf b{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.fcell .stated{display:flex;flex-direction:column;gap:3px;margin-top:8px}
+.fcell .warn{margin-top:6px;font-size:12px}
+
+/* ---- Bilgisayar: tablo ---- */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:separate;border-spacing:0;width:100%}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;background:var(--surface)}
+th{text-align:left;vertical-align:bottom}
+thead th{background:var(--sunk);border-bottom:1px solid var(--line)}
+#grid th:first-child,#grid td:first-child{position:sticky;left:0;z-index:1;border-right:1px solid var(--line)}
+#grid thead th:first-child{z-index:2}
+td.name{font-weight:600;min-width:110px}
+td.name .small{display:block;font-weight:400}
+.col-qty{min-width:150px}
+th.col-h{min-width:150px;background:var(--gold-soft)}
+td.col-h{min-width:150px;background:color-mix(in srgb, var(--gold-soft) 45%, var(--surface))}
+.col-o{min-width:180px}
+.line{height:36px;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.line .tag{width:34px;text-align:left}
+.col-qty .line input{width:84px}
+.col-o .line input{width:120px}
+.rowtot{border-top:1px dashed var(--line);margin-top:4px;padding-top:5px;text-align:right;min-height:40px}
+.rowtot .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;font-size:14.5px}
+td.best .rowtot .v{color:var(--good)}
+td.best{box-shadow:inset 0 0 0 2px var(--good-soft)}
+tr.zero td:not(:first-child) .rowtot{visibility:hidden}
+tr.zero td.name{color:var(--muted)}
+.oh{display:flex;flex-direction:column;gap:5px;min-width:170px}
+tfoot td{border-bottom:0;border-top:2px solid var(--fg);background:var(--surface)}
+
+/* Kuyumcular arası fark */
+table.pair td,table.pair th{text-align:right;white-space:nowrap}
+table.pair td:first-child,table.pair th:first-child{text-align:left}
+table.pair td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+table.pair td:first-child{font-family:var(--body)}
+table.pair .rk{display:inline-block;min-width:22px;color:var(--muted);font-family:var(--mono)}
+table.pair .tt{display:block;font-size:12.5px;color:var(--muted);font-family:var(--mono);padding-left:22px}
+table.pair td.self{color:var(--muted);background:var(--sunk)}
+table.pair tbody tr:first-child td:first-child{color:var(--good)}
+
+/* ---- Telefon: kartlar ---- */
+.gcards{display:flex;flex-direction:column;gap:12px}
+.gcard{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.gc-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:10px 12px;background:var(--sunk)}
+.gc-head b{font-size:16px}
+.gc-qty,.gl-prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.gc-qty{padding:10px 12px}
+.qf{display:flex;align-items:center;gap:8px;min-width:0}
+.qf .tag{width:34px}
+.qf input{flex:1;min-width:0;width:auto}
+.gc-line{padding:10px 12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.gc-line.hl{background:color-mix(in srgb, var(--gold-soft) 45%, var(--surface))}
+.gc-line.best{background:color-mix(in srgb, var(--good-soft) 70%, var(--surface))}
+.gl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.gl-name{font-weight:600;font-size:14px;overflow-wrap:anywhere;min-width:0}
+.gl-name .small{font-weight:400}
+.gl-top .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;font-size:15px;white-space:nowrap}
+.gc-line.best .gl-top .v{color:var(--good)}
+.gl-units{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px}
+.gc-line .x,.gc-line .d{text-align:right}
+.gcard.zero .gc-line{display:none}
+.gcard.zero .gc-head{background:var(--surface)}
+.gcard.zero .gc-head b{color:var(--muted)}
+.mh{margin-top:6px}
+.htot-line{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:10px 12px;border-radius:8px;background:color-mix(in srgb, var(--gold-soft) 45%, var(--surface));border:1px solid var(--line)}
+.htot-line b{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:17px;color:var(--gold)}
+.ocards{display:flex;flex-direction:column;gap:10px}
+.ocard{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--surface)}
+.ocard.best{border-color:var(--good);box-shadow:inset 0 0 0 1px var(--good)}
+.ocard .tot{font-size:22px;text-align:left}
+.ocard .d,.ocard .kf{text-align:left}
+.oc-top{display:flex;align-items:center;gap:8px}
+.oc-top input{flex:1;min-width:0;font-size:16px}
+
+@media (max-width:760px){
+  body{padding-block:14px 40px}
+  header.top{align-items:flex-start}
+  .status-box{align-items:flex-start}
+  .status-row{justify-content:flex-start}
+  #statusSub{text-align:left}
+  section.card{padding:12px;border-radius:10px}
+  .summary > div{padding:12px 14px}
+  input.n{font-size:16px;height:36px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <div class="label">Harem Altın canlı alış fiyatlarıyla</div>
+      <h1>Altın Bozdurma Hesabı</h1>
+    </div>
+    <div class="status-box">
+      <div class="status-row">
+        <div class="status" id="status" data-s="wait"><span class="dot"></span><span id="statusText">Bağlanıyor…</span></div>
+        <button type="button" id="refreshBtn">Yenile</button>
+      </div>
+      <div class="small muted" id="statusSub"></div>
+    </div>
+  </header>
+  <div class="warn" id="previewWarn" hidden></div>
+
+  <div class="summary" id="summary"></div>
+
+  <section class="card">
+    <div class="sec-head">
+      <h2>Altınlarım ve teklifler</h2>
+      <button class="primary" id="addBtn" type="button">+ Kuyumcu ekle</button>
+    </div>
+    <p class="tip">Elindeki adetleri yeni ve eski olarak yaz. Harem değeri ve kuyumcuların teklifi her altın için yan yana hesaplanır. Kuyumcu fiyatını birim fiyat ya da kalem toplamı olarak girebilirsin; yeşil olan, o altında en çok veren.</p>
+    <div id="gridHost"></div>
+    <p class="tip" id="mixNote"></p>
+  </section>
+
+  <section class="card" id="pairCard" hidden>
+    <h2>Kuyumcular arası fark</h2>
+    <p class="tip">Toplam tutara göre sıralı. Satırdaki kuyumcu, sütundaki kuyumcudan bu kadar fazla (+) ya da az (−) veriyor.</p>
+    <div class="tbl-wrap"><table id="pairTbl" class="pair"></table></div>
+  </section>
+
+  <p class="tip">Kuyumcu senden alırken Harem'in "Alış" fiyatı esas alınır. Harem'in fiyatları toptan piyasa fiyatıdır; kuyumcular genelde biraz altından alır. Yazdıkların sadece bu cihazda, bu tarayıcıda saklanır.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"></script>
+<script>
+(function(){
+"use strict";
+const LS_STATE = "altin-bozdurma-v2";
+const LS_PRICES = "altin-bozdurma-fiyat-v1";
+
+const ROWS = [
+  {key:"CEYREK", name:"Çeyrek", coin:true},
+  {key:"YARIM", name:"Yarım", coin:true},
+  {key:"TEK", name:"Tam", coin:true},
+  {key:"ATA", name:"Ata", coin:true},
+  {key:"ATA5", name:"Ata 5'li", coin:true},
+  {key:"GREMESE", name:"Gremse", coin:true},
+  {key:"AYAR22", name:"22 Ayar Bilezik", coin:false},
+  {key:"AYAR14", name:"14 Ayar", coin:false},
+  {key:"KULCEALTIN", name:"Gram Altın", coin:false, note:"24 ayar"}
+];
+const codesOf = r => r.coin ? [r.key+"_YENI", r.key+"_ESKI"] : [r.key];
+const ALL_CODES = ROWS.flatMap(codesOf);
+const tagOf = c => c.endsWith("_YENI") ? "Yeni" : c.endsWith("_ESKI") ? "Eski" : "Gram";
+const tagCls = c => c.endsWith("_ESKI") ? "tag e" : "tag";
+const isGram = c => !(c.endsWith("_YENI") || c.endsWith("_ESKI"));
+
+const DEFAULT_STATE = {
+  holdings: { TEK_ESKI: 9, ATA_ESKI: 2, YARIM_ESKI: 3, AYAR22: 129 },
+  offers: [
+    { id:"o1", name:"1. Kuyumcu", mode:"total", stated:1236050,
+      units:{ TEK_ESKI:359250/9, ATA_ESKI:82300/2, YARIM_ESKI:60000/3, AYAR22:734500/129 } },
+    { id:"o2", name:"Damla Kuyum", mode:"unit", stated:1238875,
+      units:{ TEK_ESKI:39950, ATA_ESKI:41200, YARIM_ESKI:19950, AYAR22:5675 } }
+  ]
+};
+/* Canlı bağlantı kurulamazsa gösterilecek son bilinen Harem alış fiyatları */
+const FALLBACK_TIME = "31-10-2026 14:57:05";
+const FALLBACK_ALIS = { CEYREK_YENI:10147, CEYREK_ESKI:9973, YARIM_YENI:20320, YARIM_ESKI:19946, TEK_YENI:40515, TEK_ESKI:39954,
+  ATA_YENI:41605, ATA_ESKI:41182, ATA5_YENI:207560, ATA5_ESKI:205690, GREMESE_YENI:100539, GREMESE_ESKI:99417,
+  AYAR22:5670.06, AYAR14:3400.50, KULCEALTIN:6201.86, ALTIN:6233.03 };
+
+function load(k){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch(e){ return null; } }
+function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+let state = load(LS_STATE) || JSON.parse(JSON.stringify(DEFAULT_STATE));
+state.holdings = state.holdings || {}; state.offers = state.offers || [];
+state.offers.forEach(o => { o.units = o.units || {}; o.mode = o.mode || "unit"; o.name = o.name || ""; });
+const persist = () => save(LS_STATE, state);
+
+const cached = load(LS_PRICES);
+let prices = cached && cached.prices ? cached.prices
+  : Object.fromEntries(Object.entries(FALLBACK_ALIS).map(([k, v]) => [k, { alis: v }]));
+let priceTime = cached && cached.time ? cached.time : FALLBACK_TIME;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+function fmt(n, dec){
+  if (n == null || !isFinite(n)) return "—";
+  const d = dec != null ? dec : (Math.abs(n - Math.round(n)) < 0.005 ? 0 : 2);
+  return n.toLocaleString("tr-TR", {minimumFractionDigits:d, maximumFractionDigits:d});
+}
+const tl = (n, d) => (n == null || !isFinite(n)) ? "—" : fmt(n, d) + " ₺";
+function signed(n){
+  if (!isFinite(n)) return "";
+  if (Math.abs(n) < 0.5) return "±0 ₺";
+  return (n > 0 ? "+" : "−") + fmt(Math.abs(n), 0) + " ₺";
+}
+function parseNum(s){
+  if (s == null) return NaN;
+  s = String(s).replace(/[\s₺]/g, "").replace(/tl$/i, "");
+  if (!s) return NaN;
+  if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+  else if ((s.match(/\./g) || []).length > 1 || /\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+  return parseFloat(s);
+}
+const nm = o => esc((o.name || "").trim() || "İsimsiz kuyumcu");
+
+const qty = c => state.holdings[c] || 0;
+function haremUnit(c){ const p = prices[c]; if (!p) return null; const v = parseFloat(p.alis); return isFinite(v) ? v : null; }
+const hasUnit = (o, c) => o.units[c] != null && isFinite(o.units[c]) && o.units[c] > 0;
+
+function rowValue(r, unitFn){
+  let t = 0, any = false, missing = false;
+  for (const c of codesOf(r)){
+    const q = qty(c); if (!q) continue;
+    any = true;
+    const u = unitFn(c);
+    if (u == null) { missing = true; continue; }
+    t += u * q;
+  }
+  return { t, any, missing };
+}
+/* "9 adet × 39.950 ₺" gibi döküm; yeni ve eski ayrı satırda */
+function breakdown(r, unitFn){
+  const codes = codesOf(r);
+  return codes.filter(c => qty(c) > 0 && unitFn(c) != null).map(c => {
+    const pre = codes.length > 1 ? tagOf(c) + " " : "";
+    return `${pre}${fmt(qty(c))} ${isGram(c) ? "gr" : "adet"} × ${tl(unitFn(c))}`;
+  }).join("<br>");
+}
+function totalOf(unitFn){
+  let t = 0, missing = false, any = false;
+  for (const r of ROWS){ const v = rowValue(r, unitFn); if (!v.any) continue; any = true; t += v.t; if (v.missing) missing = true; }
+  return { t, missing, any };
+}
+const haremFn = c => haremUnit(c);
+const offerFn = o => c => hasUnit(o, c) ? o.units[c] : null;
+
+/* ---------- Ortak parçalar ---------- */
+const pendingDelete = new Set();
+function offerInputValue(o, c){
+  if (!hasUnit(o, c)) return "";
+  return o.mode === "unit" ? fmt(o.units[c]) : (qty(c) ? fmt(o.units[c] * qty(c)) : "");
+}
+const qtyInput = (c, r) => `<input class="n" type="text" inputmode="${isGram(c) ? "decimal" : "numeric"}" id="q_${c}" data-code="${c}" value="${qty(c) ? fmt(qty(c)) : ""}" placeholder="${isGram(c) ? "0 gr" : "0"}" aria-label="${r.name} ${tagOf(c)} ${isGram(c) ? "gram" : "adet"}">`;
+const priceInput = (o, c, r) => `<input class="n" type="text" inputmode="decimal" id="p_${o.id}_${c}" data-oid="${o.id}" data-code="${c}" value="${offerInputValue(o, c)}" aria-label="${nm(o)} ${r.name} ${tagOf(c)}">`;
+const nameInput = o => `<input class="nm" type="text" id="on_${o.id}" data-oid="${o.id}" value="${esc(o.name)}" aria-label="Kuyumcu adı" placeholder="Kuyumcu adı">`;
+const modeSeg = o => `<div class="seg" role="group" aria-label="Fiyat girişi">
+    <button type="button" data-act="mode" data-oid="${o.id}" data-mode="unit" aria-pressed="${o.mode === "unit"}">Birim</button>
+    <button type="button" data-act="mode" data-oid="${o.id}" data-mode="total" aria-pressed="${o.mode === "total"}">Toplam</button>
+  </div>`;
+const delCtl = o => pendingDelete.has(o.id)
+  ? `<span class="confirm">Silinsin mi? <button type="button" class="link" data-act="del-yes" data-oid="${o.id}">Evet</button><button type="button" class="link" data-act="del-no" data-oid="${o.id}">Hayır</button></span>`
+  : `<button type="button" class="link" data-act="del" data-oid="${o.id}">Sil</button>`;
+const statedBlock = o => `<div class="stated">
+    <label class="th-sub" for="os_${o.id}">Kuyumcunun söylediği toplam</label>
+    <input class="n" type="text" inputmode="decimal" id="os_${o.id}" data-oid="${o.id}" value="${o.stated ? fmt(o.stated) : ""}" placeholder="varsa yaz">
+  </div>
+  <div class="warn" id="ow_${o.id}" hidden></div>`;
+
+/* ---------- Bilgisayar görünümü: tablo ---------- */
+function buildDesktop(){
+  const offers = state.offers;
+  const headOffers = offers.map(o => `
+    <th class="col-o"><div class="oh">${nameInput(o)}<div class="oh-row">${modeSeg(o)}${delCtl(o)}</div><span class="th-sub" id="ob_${o.id}"></span></div></th>`).join("");
+  const body = ROWS.map(r => {
+    const codes = codesOf(r);
+    const qtyCell = codes.map(c => `<div class="line"><span class="${tagCls(c)}">${tagOf(c)}</span>${qtyInput(c, r)}</div>`).join("");
+    const hCell = codes.map(c => `<div class="line"><span class="${tagCls(c)}">${tagOf(c)}</span><span class="u" id="hu_${c}">—</span></div>`).join("");
+    const oCells = offers.map(o => `
+      <td class="col-o" id="oc_${o.id}_${r.key}">
+        ${codes.map(c => `<div class="line"><span class="${tagCls(c)}">${tagOf(c)}</span>${priceInput(o, c, r)}</div>`).join("")}
+        <div class="rowtot"><span class="v" id="ot_${o.id}_${r.key}"></span><span class="x" id="ox_${o.id}_${r.key}"></span><span class="d" id="od_${o.id}_${r.key}"></span></div>
+      </td>`).join("");
+    return `<tr id="row_${r.key}">
+      <td class="name">${r.name}<span class="small muted">${r.coin ? "adet" : "gram" + (r.note ? " · " + r.note : "")}</span></td>
+      <td class="col-qty">${qtyCell}</td>
+      <td class="col-h">${hCell}<div class="rowtot"><span class="v" id="ht_${r.key}"></span><span class="x" id="hx_${r.key}"></span></div></td>
+      ${oCells}
+    </tr>`;
+  }).join("");
+  const foot = `<tr>
+    <td class="name">Toplam</td>
+    <td class="col-qty"></td>
+    <td class="col-h fcell"><div class="tot" id="htot">—</div></td>
+    ${offers.map(o => `<td class="col-o fcell" id="ft_${o.id}">
+        <div class="tot" id="otot_${o.id}">—</div>
+        <span class="d" id="odiff_${o.id}"></span>
+        <span class="kf" id="okf_${o.id}"></span>
+        ${statedBlock(o)}
+      </td>`).join("")}
+  </tr>`;
+  $("gridHost").innerHTML = `<div class="tbl-wrap"><table id="grid">
+    <thead><tr>
+      <th><span class="th-title">Altın</span></th>
+      <th class="col-qty"><span class="th-title">Elimdeki</span><span class="th-sub">yeni / eski adet, gram</span></th>
+      <th class="col-h"><span class="th-title">Harem alış</span><span class="th-sub">birim fiyat ve satır toplamı</span></th>
+      ${headOffers}
+    </tr></thead>
+    <tbody>${body}</tbody>
+    <tfoot>${foot}</tfoot>
+  </table></div>`;
+}
+
+/* ---------- Telefon görünümü: kartlar ---------- */
+function buildMobile(){
+  const offers = state.offers;
+  const cards = ROWS.map(r => {
+    const codes = codesOf(r);
+    return `<div class="gcard" id="row_${r.key}">
+      <div class="gc-head"><b>${r.name}</b><span class="small muted">${r.coin ? "yeni / eski adet" : "gram" + (r.note ? " · " + r.note : "")}</span></div>
+      <div class="gc-qty">${codes.map(c => `<label class="qf"><span class="${tagCls(c)}">${tagOf(c)}</span>${qtyInput(c, r)}</label>`).join("")}</div>
+      <div class="gc-line hl">
+        <div class="gl-top"><span class="gl-name">Harem alış</span><span class="v" id="ht_${r.key}"></span></div>
+        <div class="gl-units">${codes.map(c => `<span><span class="${tagCls(c)}">${tagOf(c)}</span> <span class="u" id="hu_${c}">—</span></span>`).join("")}</div>
+        <span class="x" id="hx_${r.key}"></span>
+      </div>
+      ${offers.map(o => `<div class="gc-line" id="oc_${o.id}_${r.key}">
+        <div class="gl-top"><span class="gl-name"><span data-oname="${o.id}"></span> <span class="small muted">· ${o.mode === "unit" ? "birim fiyat" : "kalem toplamı"}</span></span><span class="v" id="ot_${o.id}_${r.key}"></span></div>
+        <div class="gl-prices">${codes.map(c => `<label class="qf"><span class="${tagCls(c)}">${tagOf(c)}</span>${priceInput(o, c, r)}</label>`).join("")}</div>
+        <span class="x" id="ox_${o.id}_${r.key}"></span><span class="d" id="od_${o.id}_${r.key}"></span>
+      </div>`).join("")}
+    </div>`;
+  }).join("");
+  const ocards = offers.map(o => `<div class="ocard fcell" id="ft_${o.id}">
+      <div class="oc-top">${nameInput(o)}<span id="ob_${o.id}"></span></div>
+      <div class="oh-row">${modeSeg(o)}${delCtl(o)}</div>
+      <div class="tot" id="otot_${o.id}">—</div>
+      <span class="d" id="odiff_${o.id}"></span>
+      <span class="kf" id="okf_${o.id}"></span>
+      ${statedBlock(o)}
+    </div>`).join("");
+  $("gridHost").innerHTML = `<div class="gcards">${cards}</div>
+    <h3 class="mh">Kuyumcular ve toplamlar</h3>
+    <div class="htot-line"><span>Harem alış toplamı</span><b id="htot">—</b></div>
+    <div class="ocards">${ocards || `<div class="empty">Henüz kuyumcu yok. "+ Kuyumcu ekle" ile ekle.</div>`}</div>`;
+}
+
+const mq = window.matchMedia ? window.matchMedia("(max-width: 760px)") : { matches: false };
+let mobile = !!mq.matches;
+function build(){
+  mobile = !!mq.matches;
+  if (mobile) buildMobile(); else buildDesktop();
+  update();
+}
+if (mq.addEventListener) mq.addEventListener("change", () => { if (!!mq.matches !== mobile) build(); });
+
+/* ---------- Hesapları güncelle (yazılan kutulara dokunmadan) ---------- */
+function update(){
+  const offers = state.offers;
+  const focused = document.activeElement;
+
+  document.querySelectorAll("[data-oname]").forEach(el => {
+    const o = offers.find(x => x.id === el.dataset.oname);
+    el.textContent = o ? ((o.name || "").trim() || "İsimsiz kuyumcu") : "";
+  });
+
+  for (const r of ROWS){
+    for (const c of codesOf(r)){
+      const el = $("hu_" + c); if (el) el.textContent = tl(haremUnit(c));
+      $("q_" + c).classList.toggle("has", qty(c) > 0);
+      for (const o of offers){
+        const inp = $(`p_${o.id}_${c}`); if (!inp) continue;
+        inp.disabled = o.mode === "total" && !qty(c);
+        inp.placeholder = o.mode === "unit" ? (haremUnit(c) != null ? fmt(haremUnit(c)) : "birim")
+          : (qty(c) && haremUnit(c) != null ? fmt(haremUnit(c) * qty(c), 0) : "toplam");
+        if (inp !== focused) inp.value = offerInputValue(o, c);
+        inp.classList.toggle("has", hasUnit(o, c) && qty(c) > 0);
+      }
+    }
+    const hv = rowValue(r, haremFn);
+    $("row_" + r.key).classList.toggle("zero", !hv.any);
+    $("ht_" + r.key).textContent = hv.any ? (hv.missing ? "—" : tl(hv.t, hv.t % 1 ? 2 : 0)) : "";
+    $("hx_" + r.key).innerHTML = breakdown(r, haremFn);
+
+    const vals = offers.map(o => rowValue(r, offerFn(o)));
+    const complete = vals.filter(v => v.any && !v.missing).map(v => v.t);
+    const max = complete.length ? Math.max(...complete) : null;
+    offers.forEach((o, i) => {
+      const v = vals[i];
+      const tEl = $(`ot_${o.id}_${r.key}`), dEl = $(`od_${o.id}_${r.key}`), cell = $(`oc_${o.id}_${r.key}`);
+      $(`ox_${o.id}_${r.key}`).innerHTML = v.any ? breakdown(r, offerFn(o)) : "";
+      if (!v.any){ tEl.textContent = ""; dEl.textContent = ""; cell.classList.remove("best"); return; }
+      if (v.missing){ tEl.textContent = "fiyat yok"; tEl.className = "v muted"; dEl.textContent = ""; cell.classList.remove("best"); return; }
+      tEl.className = "v";
+      tEl.textContent = tl(v.t, v.t % 1 ? 2 : 0);
+      const d = hv.missing ? NaN : v.t - hv.t;
+      dEl.textContent = isFinite(d) ? "Harem'e göre " + signed(d) : "";
+      dEl.className = "d " + (d >= 0 ? "pos" : "neg");
+      cell.classList.toggle("best", offers.length > 1 && complete.length > 1 && Math.abs(v.t - max) < 0.005);
+    });
+  }
+
+  // Toplamlar
+  const h = totalOf(haremFn);
+  $("htot").textContent = h.any ? tl(h.t, 0) : "—";
+  const tots = offers.map(o => totalOf(offerFn(o)));
+  const ok = tots.filter(t => t.any && !t.missing).map(t => t.t);
+  const maxT = ok.length ? Math.max(...ok) : null;
+  const order = offers.map((o, i) => ({ o, t: tots[i].t, ok: tots[i].any && !tots[i].missing }))
+    .filter(x => x.ok).sort((a, b) => b.t - a.t);
+  offers.forEach((o, i) => {
+    const t = tots[i];
+    const kf = $("okf_" + o.id);
+    const me = order.find(x => x.o === o);
+    if (!me || order.length < 2) kf.innerHTML = "";
+    else if (me === order[0]){
+      kf.innerHTML = order.slice(1).map(x => `${nm(x.o)} ile fark: <b class="pos">${signed(me.t - x.t)}</b>`).join("<br>");
+    } else {
+      kf.innerHTML = `${nm(order[0].o)} ile fark: <b class="neg">${signed(me.t - order[0].t)}</b>`;
+    }
+    const totEl = $("otot_" + o.id), dEl = $("odiff_" + o.id), w = $("ow_" + o.id), cell = $("ft_" + o.id), badge = $("ob_" + o.id);
+    const isBest = offers.length > 1 && ok.length > 1 && t.any && !t.missing && Math.abs(t.t - maxT) < 0.005;
+    cell.classList.toggle("best", isBest);
+    badge.innerHTML = isBest ? `<span class="badge">En iyi teklif</span>` : (t.missing ? `<span class="small muted">Eksik fiyat var</span>` : "");
+    if (!t.any){ totEl.textContent = "—"; dEl.textContent = ""; w.hidden = true; return; }
+    totEl.textContent = t.missing ? "eksik" : tl(t.t, t.t % 1 ? 2 : 0);
+    if (!t.missing && !h.missing && h.t > 0){
+      const d = t.t - h.t;
+      dEl.textContent = `Harem'e göre ${signed(d)} (%${fmt(d / h.t * 100, 2)})`;
+      dEl.className = "d " + (d >= 0 ? "pos" : "neg");
+    } else dEl.textContent = "";
+    if (o.stated && !t.missing && Math.abs(o.stated - t.t) >= 1){
+      const diff = o.stated - t.t;
+      w.textContent = `Söylediği toplam hesaptan ${fmt(Math.abs(diff), 0)} ₺ ${diff > 0 ? "fazla" : "eksik"}. Hangisinin geçerli olduğunu sor.`;
+      w.hidden = false;
+    } else w.hidden = true;
+  });
+
+  // Kuyumcular arası fark tablosu (herkes herkesle)
+  if (order.length < 2){ $("pairCard").hidden = true; }
+  else {
+    $("pairCard").hidden = false;
+    const head = `<thead><tr><th>Kuyumcu</th>${order.map(x => `<th>${nm(x.o)}</th>`).join("")}</tr></thead>`;
+    const rows = order.map((a, i) => `<tr>
+      <td><span class="rk">${i + 1}.</span>${nm(a.o)}<span class="tt">${tl(a.t)}</span></td>
+      ${order.map(b => a === b ? `<td class="self">—</td>`
+        : `<td class="${a.t - b.t >= 0 ? "pos" : "neg"}">${signed(a.t - b.t)}</td>`).join("")}
+    </tr>`).join("");
+    $("pairTbl").innerHTML = head + `<tbody>${rows}</tbody>`;
+  }
+
+  // Özet
+  const best = order[0];
+  const bestD = best && !h.missing && h.t > 0 ? best.t - h.t : NaN;
+  $("summary").innerHTML = `
+    <div class="gold"><span class="label">Harem alış fiyatıyla</span><span class="big">${h.any ? tl(h.t, 0) : "—"}</span><span class="small muted">${h.any ? (h.missing ? "Bazı fiyatlar henüz gelmedi" : "Elindeki altınların toplam değeri") : "Adetleri aşağıya yaz"}</span></div>
+    <div><span class="label">En iyi teklif</span><span class="big">${best ? tl(best.t, 0) : "—"}</span><span class="small">${best ? `<b>${nm(best.o)}</b>${order[1] ? ` · ikinciden ${signed(best.t - order[1].t)}` : ""}` : `<span class="muted">Tam bir teklif yok</span>`}</span></div>
+    <div><span class="label">En iyi teklif − Harem</span><span class="big ${isFinite(bestD) ? (bestD >= 0 ? "pos" : "neg") : "muted"}">${isFinite(bestD) ? signed(bestD) : "—"}</span><span class="small muted">${isFinite(bestD) ? "%" + fmt(bestD / h.t * 100, 2) : ""}</span></div>`;
+
+  // Her altını en çok verene bozdurursan
+  let mix = 0, mixOk = offers.length > 1 && h.any;
+  for (const r of ROWS){
+    if (!rowValue(r, haremFn).any) continue;
+    const vals = offers.map(o => rowValue(r, offerFn(o))).filter(v => v.any && !v.missing).map(v => v.t);
+    if (!vals.length){ mixOk = false; break; }
+    mix += Math.max(...vals);
+  }
+  $("mixNote").innerHTML = mixOk && best && mix - best.t >= 1
+    ? `Her altını en çok veren kuyumcuya ayrı ayrı bozdursan toplam <b class="num">${tl(mix, 0)}</b> eder, en iyi tek tekliften <b>${signed(mix - best.t)}</b> fazla. Pazarlıkta koz olarak kullanabilirsin.`
+    : "";
+}
+
+/* ---------- Olaylar ---------- */
+const host = $("gridHost");
+host.addEventListener("input", e => {
+  const t = e.target, id = t.id || "";
+  if (id.startsWith("q_")){
+    const c = t.dataset.code, n = parseNum(t.value);
+    if (isFinite(n) && n > 0) state.holdings[c] = isGram(c) ? n : Math.round(n); else delete state.holdings[c];
+  } else if (id.startsWith("p_")){
+    const o = state.offers.find(x => x.id === t.dataset.oid); if (!o) return;
+    const c = t.dataset.code, v = parseNum(t.value);
+    if (!isFinite(v) || v <= 0) delete o.units[c];
+    else o.units[c] = o.mode === "unit" ? v : (qty(c) ? v / qty(c) : NaN);
+  } else if (id.startsWith("on_")){
+    const o = state.offers.find(x => x.id === t.dataset.oid); if (o) o.name = t.value;
+  } else if (id.startsWith("os_")){
+    const o = state.offers.find(x => x.id === t.dataset.oid); if (!o) return;
+    const v = parseNum(t.value); o.stated = isFinite(v) && v > 0 ? v : null;
+  } else return;
+  persist();
+  update();
+});
+host.addEventListener("focusout", e => { if (e.target.classList && e.target.classList.contains("n")) setTimeout(update, 0); });
+host.addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  const o = state.offers.find(x => x.id === b.dataset.oid); if (!o) return;
+  const act = b.dataset.act;
+  if (act === "mode"){ o.mode = b.dataset.mode; }
+  else if (act === "del"){ pendingDelete.add(o.id); }
+  else if (act === "del-no"){ pendingDelete.delete(o.id); }
+  else if (act === "del-yes"){ pendingDelete.delete(o.id); state.offers = state.offers.filter(x => x !== o); }
+  persist();
+  build();
+});
+$("addBtn").addEventListener("click", () => {
+  const id = "o" + Date.now();
+  state.offers.push({ id, name: "", mode: "unit", stated: null, units: {} });
+  persist();
+  build();
+  const inp = $("on_" + id);
+  if (inp){ inp.scrollIntoView({ block: "center", inline: "nearest" }); inp.focus(); }
+});
+
+/* ---------- Canlı fiyat (Harem) ---------- */
+let lastCheck = null, curStatus = "wait", sock = null;
+function priceDate(){
+  const m = /^(\d{2})-(\d{2})-(\d{4}) (\d{2}):(\d{2}):(\d{2})$/.exec(priceTime || "");
+  return m ? new Date(+m[3], +m[2]-1, +m[1], +m[4], +m[5], +m[6]) : null;
+}
+function setStatus(s){
+  curStatus = s;
+  $("status").dataset.s = s;
+  const t = priceTime ? priceTime.replace(/-/g, ".") : "";
+  $("statusText").textContent =
+    s === "live" ? `Canlı · fiyat saati ${t.slice(11) || t}` :
+    s === "wait" ? (t ? `Bağlanıyor… son fiyat ${t}` : "Bağlanıyor…") :
+    `Bağlantı yok · son fiyat ${t}`;
+  const w = $("previewWarn");
+  if (s === "off" || s === "stale"){
+    w.textContent = `Canlı fiyat alınamıyor, ${t} tarihli son fiyatlar gösteriliyor. Claude içindeki önizlemede canlı fiyat gelmeyebilir; internet bağlantını kontrol edip Yenile'ye bas.`;
+    w.hidden = false;
+  } else w.hidden = true;
+  updateSub();
+}
+function updateSub(){
+  const parts = [];
+  if (lastCheck) parts.push("Son kontrol " + lastCheck.toLocaleTimeString("tr-TR"));
+  const pd = priceDate();
+  if (pd && curStatus === "live"){
+    const mins = Math.floor((Date.now() - pd.getTime()) / 60000);
+    if (mins >= 10){
+      const age = mins >= 120 ? Math.floor(mins / 60) + " saattir" : mins + " dakikadır";
+      parts.push(`Harem'de fiyat ${age} değişmedi; piyasa kapalı olabilir (hafta sonu fiyat sabit kalır)`);
+    } else parts.push("Fiyat değiştikçe kendiliğinden güncellenir");
+  }
+  $("statusSub").textContent = parts.join(" · ");
+}
+setInterval(updateSub, 30000);
+
+let renderTimer = null;
+function scheduleUpdate(){ if (!renderTimer) renderTimer = setTimeout(() => { renderTimer = null; update(); }, 600); }
+
+function connect(){
+  if (typeof io !== "function"){ setStatus("stale"); return; }
+  setStatus("wait");
+  try {
+    sock = io("wss://hrmsocketonly.haremaltin.com:443", { transports: ["websocket"] });
+  } catch(e){ setStatus("stale"); return; }
+  sock.on("connect", () => setStatus("live"));
+  sock.on("disconnect", () => setStatus("wait"));
+  sock.on("connect_error", () => setStatus("stale"));
+  sock.on("price_changed", msg => {
+    if (!msg || !msg.data) return;
+    lastCheck = new Date();
+    let changed = false;
+    for (const k in msg.data){
+      if (ALL_CODES.includes(k) || k === "ALTIN"){ prices[k] = msg.data[k]; changed = true; }
+    }
+    const ref = msg.data.ALTIN || msg.data.TEK_ESKI;
+    if (ref && ref.tarih) priceTime = ref.tarih;
+    if (changed) save(LS_PRICES, { prices, time: priceTime });
+    setStatus("live");
+    if (changed) scheduleUpdate();
+  });
+  // 12 saniyede hiç bağlanamazsa kullanıcıya söyle
+  setTimeout(() => { if (curStatus === "wait" && !lastCheck) setStatus("stale"); }, 12000);
+}
+function refresh(){
+  if (!sock){ connect(); return; }
+  setStatus("wait");
+  sock.disconnect();
+  sock.connect(); // yeniden bağlanınca Harem tüm fiyatları baştan gönderir
+}
+$("refreshBtn").addEventListener("click", refresh);
+setInterval(() => { if (sock && (!lastCheck || Date.now() - lastCheck.getTime() > 120000)) refresh(); }, 30000);
+
+build();
+connect();
+})();
+</script>
+</body>
+</html>
