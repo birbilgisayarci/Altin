@@ -157,10 +157,15 @@ form.of{display:flex;flex-direction:column;gap:14px}
 .s-head{font-size:19px;font-weight:700}
 .s-head .q{font-weight:500;color:var(--muted);font-size:17px;margin-left:6px}
 .s-lbl{font-size:16px;color:var(--muted)}
+.pair-in{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair-in label{display:flex;flex-direction:column;gap:6px;font-weight:600;color:var(--fg);min-width:0}
+.pair-in .sm{font-weight:400;color:var(--muted);font-size:14px;margin-top:-6px}
+.pair-in .in{font-size:19px;padding:10px 8px}
 .s-calc{font-size:16px;min-height:22px}
 .s-calc b{font-weight:700}
 .fsum{display:flex;flex-direction:column;gap:2px;background:var(--sunk);border-radius:14px;padding:14px 16px}
 .fsum b{font-size:28px}
+#f_diff b{font-size:inherit}
 .actions{display:flex;gap:10px}
 .actions .btn{flex:1}
 .confirm{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -191,7 +196,7 @@ form.of{display:flex;flex-direction:column;gap:14px}
     <section class="view" id="v-altin" role="tabpanel" hidden></section>
     <section class="view" id="v-kuyumcu" role="tabpanel" hidden></section>
   </main>
-  <p class="ver">Sürüm 3 · Fiyatlar Harem Altın alış fiyatıdır, bilgi amaçlıdır.</p>
+  <p class="ver">Sürüm 4 · Fiyatlar Harem Altın alış fiyatıdır, bilgi amaçlıdır.</p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"></script>
@@ -507,7 +512,7 @@ function renderForm(){
   const o = isNew ? null : state.offers.find(x => x.id === editing);
   if (!isNew && !o){ editing = null; renderKuyumcu(); return; }
   if (!draft) draft = { name: o ? o.name : "", stated: o && o.stated ? fmt(o.stated) : "",
-    units: Object.fromEntries(own.map(c => [c, o && oUnit(o, c) != null ? fmt(o.units[c]) : ""])) };
+    u: Object.fromEntries(own.map(c => [c, o ? oUnit(o, c) : null])) };
   v.innerHTML = `<form class="of" id="oform" novalidate>
       <h2 style="margin:0">${isNew ? "Yeni kuyumcu" : "Kuyumcuyu düzenle"}</h2>
       <div class="box">
@@ -517,8 +522,14 @@ function renderForm(){
       </div>
       ${own.map((c, i) => `<div class="box sec">
           <div class="s-head">${nameHtml(c)}<span class="q">${fmt(qty(c))} ${unitW(c)}</span></div>
-          <label class="s-lbl" for="f_${c}">1 ${isGram(c) ? "gramına" : "adedine"} verdiği fiyat (₺)</label>
-          <input class="in" type="text" inputmode="decimal" id="f_${c}" data-code="${c}" placeholder="Harem ${hUnit(c) != null ? fmt(hUnit(c)) : ""}" value="${esc(draft.units[c] || "")}" enterkeyhint="${i < own.length - 1 ? "next" : "done"}">
+          <div class="pair-in">
+            <label class="s-lbl" for="f_${c}">Birim fiyat<span class="sm">1 ${isGram(c) ? "gram" : "adet"}</span>
+              <input class="in" type="text" inputmode="decimal" id="f_${c}" data-code="${c}" data-kind="unit" placeholder="${hUnit(c) != null ? fmt(hUnit(c)) : ""}" value="${draft.u[c] != null ? fmt(draft.u[c]) : ""}">
+            </label>
+            <label class="s-lbl" for="ft_${c}">Toplam tutar<span class="sm">${fmt(qty(c))} ${unitW(c)}</span>
+              <input class="in" type="text" inputmode="decimal" id="ft_${c}" data-code="${c}" data-kind="total" placeholder="${hUnit(c) != null ? fmt(Math.round(hUnit(c) * qty(c)), 0) : ""}" value="${draft.u[c] != null ? fmt(Math.round(draft.u[c] * qty(c) * 100) / 100) : ""}">
+            </label>
+          </div>
           <div class="s-calc" id="fc_${c}"></div>
         </div>`).join("")}
       <div class="fsum"><span class="muted">Bu kuyumcunun toplamı</span><b id="f_total">—</b><span id="f_diff"></span></div>
@@ -540,7 +551,7 @@ function renderForm(){
 }
 function draftUnits(){
   const out = {};
-  for (const c of owned()){ const v = parseNum(draft.units[c]); if (isFinite(v) && v > 0) out[c] = v; }
+  for (const c of owned()){ const v = draft.u[c]; if (v != null && isFinite(v) && v > 0) out[c] = v; }
   return out;
 }
 function updateForm(){
@@ -549,10 +560,10 @@ function updateForm(){
   let t = 0, miss = 0;
   for (const c of owned()){
     const el = $("fc_" + c);
-    if (units[c] == null){ miss++; if (el) el.innerHTML = `<span class="muted">Fiyatı yazınca tutar burada çıkar.</span>`; continue; }
+    if (units[c] == null){ miss++; if (el) el.innerHTML = `<span class="muted">Birim fiyatı ya da toplam tutarı yaz, öbürü kendiliğinden dolar.</span>`; continue; }
     const line = units[c] * qty(c); t += line;
     const hu = hUnit(c);
-    if (el) el.innerHTML = `${fmt(qty(c))} ${unitW(c)} × ${tl(units[c])} = <b>${tlr(line)}</b>` + (hu != null ? `<br>Harem'e göre ${moreLess((units[c] - hu) * qty(c))}` : "");
+    if (el) el.innerHTML = `Birim: <b>${tl(units[c])}</b> · Toplam: <b>${tl(Math.round(line * 100) / 100)}</b>` + (hu != null ? `<br>Harem'e göre ${moreLess((units[c] - hu) * qty(c))}` : "");
   }
   const h = haremTotal();
   if (miss){
@@ -567,7 +578,17 @@ $("v-kuyumcu").addEventListener("input", e => {
   const t = e.target; if (!draft) return;
   if (t.id === "f_name") draft.name = t.value;
   else if (t.id === "f_stated") draft.stated = t.value;
-  else if (t.dataset && t.dataset.code) draft.units[t.dataset.code] = t.value;
+  else if (t.dataset && t.dataset.code){
+    const c = t.dataset.code, q = qty(c), n = parseNum(t.value);
+    const ok = isFinite(n) && n > 0;
+    if (t.dataset.kind === "total"){
+      draft.u[c] = ok ? n / q : null;
+      $("f_" + c).value = ok ? fmt(Math.round(n / q * 100) / 100) : "";
+    } else {
+      draft.u[c] = ok ? n : null;
+      $("ft_" + c).value = ok ? fmt(Math.round(n * q * 100) / 100) : "";
+    }
+  }
   updateForm();
 });
 $("v-kuyumcu").addEventListener("submit", e => {
@@ -607,7 +628,7 @@ $("v-kuyumcu").addEventListener("click", e => {
 // Klavyede "ileri" deyince sonraki fiyat kutusuna geç
 $("v-kuyumcu").addEventListener("keydown", e => {
   if (e.key !== "Enter" || !e.target.dataset || !e.target.dataset.code) return;
-  const inputs = [...document.querySelectorAll("#oform input[data-code]")];
+  const inputs = [...document.querySelectorAll(`#oform input[data-kind="${e.target.dataset.kind}"]`)];
   const i = inputs.indexOf(e.target);
   if (i >= 0 && i < inputs.length - 1){ e.preventDefault(); inputs[i + 1].focus(); }
 });
